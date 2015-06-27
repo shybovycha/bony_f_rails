@@ -1,0 +1,21 @@
+.row
+  .col-sm-6.col-sm-offset-3.text-left
+    = form_for [ @promotion, @challenge ] do |f|
+      - if @challenge.errors.any?
+        - @challenge.errors.full_messages.each do |message|
+          .alert.alert-danger role="danger"
+            button type="button" class="close" data-dismiss="alert" aria-label="Close"
+              span aria-hidden="true" &times;
+            = message
+
+
+      .row.form-group
+        .col-sm-3
+          = f.label :title, class: "col-sm-12 control-label"
+
+        .col-sm-9
+          = f.text_field :title, autofocus: true, class: "form-control", placeholder: "Title"
+
+      .row.form-group.actions
+        .col-sm-12.text-center
+          = f.submit "Save", class: "btn btn-success btn-lg"
