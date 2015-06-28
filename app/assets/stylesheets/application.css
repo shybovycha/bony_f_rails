@@ -24,3 +24,7 @@
 .description .thumbnail {
     min-height: 200px;
 }
+
+.row.padded {
+    padding: 5px 0;
+}

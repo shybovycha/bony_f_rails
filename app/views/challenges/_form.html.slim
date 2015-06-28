@@ -16,6 +16,13 @@
         .col-sm-9
           = f.text_field :title, autofocus: true, class: "form-control", placeholder: "Title"
 
+      .row.form-group
+        .col-sm-3
+          = f.label :beacon_owner, "Place to visit", class: "col-sm-12 control-label"
+
+        .col-sm-9
+          = f.text_field :beacon_owner, { autocomplete: 'off', class: "form-control", placeholder: "Place to visit", 'data-provide' => "typeahead" }
+
       .row.form-group.actions
         .col-sm-12.text-center
           = f.submit "Save", class: "btn btn-success btn-lg"

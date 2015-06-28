@@ -15,6 +15,7 @@
   ],
   "dependencies": {
     "bootstrap": "latest",
-    "jquery": "latest"
+    "jquery": "latest",
+    "bootstrap3-typeahead": "latest"
   }
 }

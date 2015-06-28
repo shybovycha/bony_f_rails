@@ -1,0 +1,26 @@
+.row
+  .col-sm-6.col-sm-offset-3.text-center
+    .row
+      .col-sm-12.text-center
+        h2 Import beacons from CSV
+
+.hspace
+
+.row
+  .col-sm-6.col-sm-offset-3.text-left
+    - if @message.present?
+        .alert.alert-info
+            = @message
+
+    = form_tag import_beacons_path, multipart: true do |f|
+      .row.form-group
+        .col-sm-3
+          = label_tag :beacons_csv, 'CSV file:', class: "col-sm-12 control-label"
+
+        .col-sm-9
+          = file_field_tag :beacons_csv, accept: 'text/csv', class: "form-control"
+
+      .row.form-group.actions
+        .col-sm-12.text-center
+          = submit_tag "Save", class: "btn btn-success btn-lg"
+

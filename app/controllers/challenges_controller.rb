@@ -1,3 +1,5 @@
+require 'csv'
+
 class ChallengesController < ApplicationController
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
   before_action :set_promotion
@@ -29,7 +31,7 @@ class ChallengesController < ApplicationController
 
     respond_to do |format|
       if @challenge.save
-        format.html { redirect_to @promotion, notice: 'Challenge was successfully created.' }
+        format.html { redirect_to edit_promotion_path(@promotion), notice: 'Challenge was successfully created.' }
         #format.json { render :show, status: :created, location: @challenge }
       else
         format.html { render :new }
@@ -43,7 +45,7 @@ class ChallengesController < ApplicationController
   def update
     respond_to do |format|
       if @challenge.update(challenge_params)
-        format.html { redirect_to @promotion, notice: 'Challenge was successfully updated.' }
+        format.html { redirect_to edit_promotion_path(@promotion), notice: 'Challenge was successfully updated.' }
         #format.json { render :show, status: :ok, location: @challenge }
       else
         format.html { render :edit }
@@ -57,8 +59,8 @@ class ChallengesController < ApplicationController
   def destroy
     @challenge.destroy
     respond_to do |format|
-      format.html { redirect_to challenges_url, notice: 'Challenge was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to edit_promotion_path(@promotion), notice: 'Challenge was successfully destroyed.' }
+      # format.json { head :no_content }
     end
   end
 
@@ -74,6 +76,6 @@ class ChallengesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def challenge_params
-      params.require(:challenge).permit(:title)
+      params.require(:challenge).permit(:title, :beacon_owner)
     end
 end

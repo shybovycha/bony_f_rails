@@ -29,6 +29,25 @@
         .col-sm-8
           = f.datetime_select :ends_at, class: "form-control"
 
+      .row.panel.panel-default
+        .panel-heading
+          h3.panel-title Challenges
+        .panel-body
+          - if @promotion.challenges.count > 0
+            - @promotion.challenges.each do |challenge|
+              .row
+                .col-sm-8
+                  = challenge.title
+
+                .col-sm-4.text-right
+                  = link_to 'Edit', edit_promotion_challenge_path(@promotion, challenge), class: 'btn btn-sm btn-primary'
+                  | &nbsp;
+                  = link_to 'Delete', promotion_challenge_path(@promotion, challenge), class: 'btn btn-sm btn-danger', method: :delete, confirm: 'Are you sure?'
+
+          = link_to 'Add challenge', new_promotion_challenge_path(@promotion), class: 'btn btn-sm btn-success'
+
+      br
+
       .row.form-group.actions
         .col-sm-12.text-center
           = f.submit "Save", class: "btn btn-success btn-lg"

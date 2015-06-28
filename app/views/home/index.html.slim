@@ -1,50 +1,74 @@
 h1 Welcome to Bony-F!
 
+.row.alert.alert-warning role="alert"
+    .row
+        .col-md-12
+            br
+            h3 With Bony-F you can rise your clients' happyness to the sky! Check this out:
+
+    .hspace
+
+    .row.description
+        .col-md-3
+            .thumbnail
+                .caption
+                    h3
+                        i.glyphicon.glyphicon-home
+                        | &nbsp; Register your company
+
+                    p Tell users about you! Where you are, what do you do and what are you good at.
+
+        .col-md-3
+            .thumbnail
+                .caption
+                    h3
+                        i.glyphicon.glyphicon-pencil
+                        | &nbsp; Define the rules
+
+                    p Maybe you want users to visit some famous places? Or buy something at yours?
+
+        .col-md-3
+            .thumbnail
+                .caption
+                    h3
+                        i.glyphicon.glyphicon-star
+                        | &nbsp; Offer the reward
+
+                    p Show users what can they obtain from you when complete the challenge!
+
+        .col-md-3
+            .thumbnail
+                .caption
+                    h3
+                        i.glyphicon.glyphicon-user
+                        | &nbsp; Rock'n'Roll!
+
+                    p Observe as your popularity grows =)
+
+    .row
+        .col-md-12.text-right
+            button class="btn btn-sm btn-primary" data-dismiss="alert" aria-label="Close"
+                | Dismiss
+
 .row
-    .col-md-12
-        h3 With Bony-F you can rise your clients' happyness to the ski! Check this out:
+    .panel.panel-default
+        .panel-heading
+            h3.panel-title #{current_user.organization.title} promotions
 
-.hspace
+        .panel-body
+            - current_user.organization.promotions.each do |promotion|
+                .row.padded
+                    .col-md-8
+                        = promotion.description
 
-.row.description
-    .col-md-3
-        .thumbnail
-            .caption
-                h3
-                    i.glyphicon.glyphicon-home
-                    | &nbsp; Register your company
-
-                p Tell users about you! Where you are, what do you do and what are you good at.
-
-    .col-md-3
-        .thumbnail
-            .caption
-                h3
-                    i.glyphicon.glyphicon-pencil
-                    | &nbsp; Define the rules
-
-                p Maybe you want users to visit some famous places? Or buy something at yours?
-
-    .col-md-3
-        .thumbnail
-            .caption
-                h3
-                    i.glyphicon.glyphicon-star
-                    | &nbsp; Offer the reward
-
-                p Show users what can they obtain from you when complete the challenge!
-
-    .col-md-3
-        .thumbnail
-            .caption
-                h3
-                    i.glyphicon.glyphicon-user
-                    | &nbsp; Rock'n'Roll!
-
-                p Observe as your popularity grows =)
-
-.hspace
+                    .col-md-4.text-right
+                        = link_to 'Edit', edit_promotion_path(promotion), class: 'btn btn-sm btn-warning'
+                        | &nbsp;
+                        = link_to 'Delete', promotion_path(promotion), class: 'btn btn-sm btn-danger', method: :delete
 
 .row
     .col-md-12.text-center
-        a.btn.btn-success.btn-lg href=@first_campaign_url Start your first campaign!
+        a.btn.btn-success.btn-lg href=@first_campaign_url
+            = @start_campaign_message
+
+.hspace

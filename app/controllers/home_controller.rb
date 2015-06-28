@@ -1,13 +1,16 @@
 class HomeController < ApplicationController
   def index
-    @first_campaign_url = if user_signed_in?
-                            if current_user.organization.blank?
-                                new_organization_path
-                            else
-                                new_promotion_path
-                            end
-                        else
-                            new_user_registration_path
-                        end
+    @start_campaign_message = "Start your first campaign!"
+
+    if user_signed_in?
+        if current_user.organization.blank?
+            @first_campaign_url = new_organization_path
+        else
+            @first_campaign_url = new_promotion_path
+            @start_campaign_message = "Start new campaign!"
+        end
+    else
+        @first_campaign_url = new_user_registration_path
+    end
   end
 end

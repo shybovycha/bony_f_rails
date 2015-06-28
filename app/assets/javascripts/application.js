@@ -12,5 +12,16 @@
 //
 //= require jquery/dist/jquery.min
 //= require bootstrap/dist/js/bootstrap.min
+//= require bootstrap3-typeahead/bootstrap3-typeahead
 //= require jquery_ujs
 //= require_tree .
+
+$(document).ready(function() {
+    var elt = $('#challenge_beacon_owner');
+
+    if (elt) {
+        $.getJSON('/beacons/', function(data) {
+            elt.typeahead({ source: data.map(function(e) { return e.owner; }) });
+        });
+    }
+});

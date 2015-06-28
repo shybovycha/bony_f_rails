@@ -42,7 +42,7 @@ class PromotionsController < ApplicationController
   def update
     respond_to do |format|
       if @promotion.update(promotion_params)
-        format.html { redirect_to @promotion, notice: 'Promotion was successfully updated.' }
+        format.html { redirect_to home_page_path, notice: 'Promotion was successfully updated.' }
         #format.json { render :show, status: :ok, location: @promotion }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class PromotionsController < ApplicationController
   def destroy
     @promotion.destroy
     respond_to do |format|
-      format.html { redirect_to promotions_url, notice: 'Promotion was successfully destroyed.' }
+      format.html { redirect_to home_page_path, notice: 'Promotion was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
