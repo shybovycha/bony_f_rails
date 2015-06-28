@@ -50,21 +50,22 @@ h1 Welcome to Bony-F!
             button class="btn btn-sm btn-primary" data-dismiss="alert" aria-label="Close"
                 | Dismiss
 
-.row
-    .panel.panel-default
-        .panel-heading
-            h3.panel-title #{current_user.organization.title} promotions
+- if user_signed_in?
+    .row
+        .panel.panel-default
+            .panel-heading
+                h3.panel-title #{current_user.organization.title} promotions
 
-        .panel-body
-            - current_user.organization.promotions.each do |promotion|
-                .row.padded
-                    .col-md-8
-                        = promotion.description
+            .panel-body
+                - current_user.organization.promotions.each do |promotion|
+                    .row.padded
+                        .col-md-8
+                            = promotion.description
 
-                    .col-md-4.text-right
-                        = link_to 'Edit', edit_promotion_path(promotion), class: 'btn btn-sm btn-warning'
-                        | &nbsp;
-                        = link_to 'Delete', promotion_path(promotion), class: 'btn btn-sm btn-danger', method: :delete
+                        .col-md-4.text-right
+                            = link_to 'Edit', edit_promotion_path(promotion), class: 'btn btn-sm btn-warning'
+                            | &nbsp;
+                            = link_to 'Delete', promotion_path(promotion), class: 'btn btn-sm btn-danger', method: :delete
 
 .row
     .col-md-12.text-center
